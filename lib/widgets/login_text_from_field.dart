@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class LoginTextFromField extends StatelessWidget {
   final String? hintText;
   final bool isPassword;
-  final String Function(String?)? onChange;
-  final String Function(String?)? validation;
+  final String? Function(String?)? onChange;
+  final String? Function(String?)? validation;
 
   const LoginTextFromField({
     this.hintText,
@@ -24,6 +24,13 @@ class LoginTextFromField extends StatelessWidget {
         fillColor: Color(0xffF4F4F4),
         filled: true,
         hintStyle: TextStyle(color: Color(0xffC3C1C1)),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(17),
+           borderSide: BorderSide(
+            color: Colors.red,
+            width: 1,
+          ),
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(17),
           borderSide: BorderSide(
