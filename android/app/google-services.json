@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820979685881",
+    "project_id": "flutterflipcards",
+    "storage_bucket": "flutterflipcards.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820979685881:android:e7059d473145b504c8c528",
+        "android_client_info": {
+          "package_name": "com.example.flip_card"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820979685881-l8hjsvnbu6k40vfic7m7dviqeajvr7l3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLy0PeYkEfimwGUXer7NITtpdKrUmMy3s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820979685881-l8hjsvnbu6k40vfic7m7dviqeajvr7l3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
