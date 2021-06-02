@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flip_card/blocs/blocs.dart';
 import 'package:flip_card/screens/screens.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,14 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timer(Duration(seconds: 0), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Wrapper(),
+        ),
+      );
+    });
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -25,11 +35,6 @@ class SplashScreen extends StatelessWidget {
               ],
             ),
           ),
-          child: Center(
-              child: TextButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_)=>Wrapper())),
-            child: Text("Go"),
-          )),
         ),
       ),
     );
