@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class LoginTextFromField extends StatelessWidget {
   final String? hintText;
   final bool isPassword;
-  final String? Function(String?)? onChange;
+  final void Function(String?)? onChange;
   final String? Function(String?)? validation;
 
   const LoginTextFromField({

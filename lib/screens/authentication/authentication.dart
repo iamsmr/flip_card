@@ -1,5 +1,10 @@
+import 'package:flip_card/repositories/auth/auth_repository.dart';
+import 'package:flip_card/screens/authentication/register/cubit/register_cubit.dart';
 import 'package:flip_card/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'login/cubit/login_cubit.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -19,6 +24,18 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    return isToggle ? LoginScreen(toggleScreen) : ResisterScreen(toggleScreen);
+    return isToggle
+        ? BlocProvider<LoginCubit>(
+            create: (context) => LoginCubit(
+              authRepository: context.read<AuthRepository>(),
+            ),
+            child: LoginScreen(toggleScreen),
+          )
+        : BlocProvider<RegisterCubit>(
+            create: (context) => RegisterCubit(
+              authRepository: context.read<AuthRepository>(),
+            ),
+            child: ResisterScreen(toggleScreen),
+          );
   }
 }
