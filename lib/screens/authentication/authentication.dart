@@ -19,6 +19,6 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
-    return isToggle ? LoginScreen(toggleScreen) : RegisterScreen(toggleScreen);
+    return isToggle ? LoginScreen(toggleScreen) : ResisterScreen(toggleScreen);
   }
 }
