@@ -9,21 +9,21 @@ class NavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
+    
       child: Scaffold(
         appBar: AppBar(
           title: Text("Nav Screen"),
+          leading: Text(""),
           actions: [
             IconButton(
+              icon: Icon(Icons.logout),
               onPressed: () {
                 context.read<AuthBloc>().add(AuthLogoutRequest());
               },
-              icon: Icon(Icons.logout),
             )
           ],
         ),
-        body: Center(
-          child: Text("Nav"),
-        ),
+        body: Center(child: Text("Nav")),
       ),
     );
   }
