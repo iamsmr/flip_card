@@ -4,15 +4,19 @@ import 'package:flip_card/config/paths.dart';
 import 'package:flip_card/models/models.dart';
 import 'package:flip_card/repositories/repositories.dart';
 import 'package:flutter/services.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository extends BaseAuthRepository {
   final auth.FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firebaseFirestore;
+  final GoogleSignIn _googleSignIn;
 
   AuthRepository({
     auth.FirebaseAuth? firebaseAuth,
     FirebaseFirestore? firebaseFirestore,
-  })  : _firebaseAuth = firebaseAuth ?? auth.FirebaseAuth.instance,
+    GoogleSignIn? googleSignIn,
+  })  : _googleSignIn = googleSignIn ?? GoogleSignIn(),
+        _firebaseAuth = firebaseAuth ?? auth.FirebaseAuth.instance,
         _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
@@ -30,6 +34,7 @@ class AuthRepository extends BaseAuthRepository {
       await _firebaseFirestore.collection(Paths.users).doc(user?.uid).set({
         "fullName": fullName,
         "email": email,
+        "photoURL": user?.photoURL,
       });
       return user;
     } on auth.FirebaseAuthException catch (e) {
@@ -43,17 +48,52 @@ class AuthRepository extends BaseAuthRepository {
   Future<auth.User?> loginWithEmailAndPassword({
     required String email,
     required String password,
-  }) {
-    throw UnimplementedError();
+  }) async {
+    try {
+      final credentinal = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return credentinal.user;
+    } on auth.FirebaseAuthException catch (e) {
+      throw Failure(code: e.code, message: e.message ?? "");
+    } on PlatformException catch (e) {
+      throw Failure(code: e.code, message: e.message ?? "");
+    }
   }
 
   @override
-  Future<auth.User?> loginWithGoogleAccount() {
-    throw UnimplementedError();
+  Future<auth.User?> loginWithGoogleAccount() async {
+    try {
+      GoogleSignInAccount? signInAccount = await _googleSignIn.signIn();
+      GoogleSignInAuthentication signInAuthentication =
+          await signInAccount!.authentication;
+      auth.AuthCredential credential = auth.GoogleAuthProvider.credential(
+          accessToken: signInAuthentication.accessToken,
+          idToken: signInAuthentication.idToken);
+
+      final authResult = await _firebaseAuth.signInWithCredential(credential);
+      final user = authResult.user;
+      await _firebaseFirestore.collection(Paths.users).doc(user?.uid).set({
+        "fullName": user?.displayName,
+        "email": user?.email,
+        "photoURL": user?.photoURL,
+      });
+
+      return user;
+    } on auth.FirebaseAuthException catch (e) {
+      throw Failure(code: e.code, message: e.message ?? "");
+    } on PlatformException catch (e) {
+      throw Failure(code: e.code, message: e.message ?? "");
+    }
   }
 
   @override
-  Future<void> logout() {
-    throw UnimplementedError();
+  Future<void> logout() async {
+    await _firebaseAuth.signOut();
+    await _googleSignIn.signOut();
   }
+
+  @override
+  Stream<auth.User?> get userChanged => _firebaseAuth.userChanges();
 }

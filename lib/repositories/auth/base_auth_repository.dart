@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 abstract class BaseAuthRepository {
+  Stream<auth.User?> get userChanged;
   Future<auth.User?> createAccountWithEmailAndPassword({
     required String fullName,
     required String email,

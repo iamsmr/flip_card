@@ -1,4 +1,7 @@
+import 'package:flip_card/blocs/blocs.dart';
+import 'package:flip_card/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatelessWidget {
   static const String routeName = "/splash";
@@ -23,12 +26,28 @@ class SplashScreen extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: CircularProgressIndicator(
-              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
-            ),
-          ),
+              child: TextButton(
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_)=>Wrapper())),
+            child: Text("Go"),
+          )),
         ),
       ),
+    );
+  }
+}
+
+class Wrapper extends StatelessWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        if (state.status == AuthStatus.authenticated) {
+          return NavScreen();
+        }
+        return Authentication();
+      },
     );
   }
 }
