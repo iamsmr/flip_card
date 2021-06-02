@@ -12,6 +12,8 @@ class CoustomRoute {
         );
       case SplashScreen.routeName:
         return SplashScreen.route();
+      case ForgotPassword.routeName:
+        return ForgotPassword.route();
       default:
         return _error();
     }
