@@ -11,6 +11,7 @@ class AuthRepository extends BaseAuthRepository {
   final FirebaseFirestore _firebaseFirestore;
   final GoogleSignIn _googleSignIn;
 
+  /// Initilization of [firebase AUth] [firebase firestore] and [google sign in]
   AuthRepository({
     auth.FirebaseAuth? firebaseAuth,
     FirebaseFirestore? firebaseFirestore,
@@ -19,6 +20,7 @@ class AuthRepository extends BaseAuthRepository {
         _firebaseAuth = firebaseAuth ?? auth.FirebaseAuth.instance,
         _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
+  /// Override Create [Firebase Account] Method From Base [Auth Repository]
   @override
   Future<auth.User?> createAccountWithEmailAndPassword({
     required String fullName,
@@ -44,6 +46,9 @@ class AuthRepository extends BaseAuthRepository {
     }
   }
 
+  /// Override login [Firebase Account] Method From Base [Auth Repository]
+  ///
+
   @override
   Future<auth.User?> loginWithEmailAndPassword({
     required String email,
@@ -61,6 +66,8 @@ class AuthRepository extends BaseAuthRepository {
       throw Failure(code: e.code, message: e.message ?? "");
     }
   }
+
+  /// Override login with google [Firebase Account] Method From Base [Auth Repository]
 
   @override
   Future<auth.User?> loginWithGoogleAccount() async {
@@ -88,11 +95,15 @@ class AuthRepository extends BaseAuthRepository {
     }
   }
 
+  /// Override logout [Firebase Account] Method From `Base` [Auth Repository]
+
   @override
   Future<void> logout() async {
     await _firebaseAuth.signOut();
     await _googleSignIn.signOut();
   }
+
+  /// Override notifier on  [User Changer] Method From `Base` [Auth Repository]
 
   @override
   Stream<auth.User?> get userChanged => _firebaseAuth.userChanges();

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           title: 'Flip Card',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            primaryColor: Color(0xff8893F1)
           ),
           initialRoute: '/splash',
           onGenerateRoute: CoustomRoute.onGenerateRoute,
