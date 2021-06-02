@@ -1,4 +1,5 @@
 import 'package:flip_card/constant/constant.dart';
+import 'package:flip_card/helper/validation.dart';
 import 'package:flip_card/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -15,6 +16,8 @@ class ForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -80,30 +83,40 @@ class ForgotPassword extends StatelessWidget {
                   ],
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: ListView(
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  children: [
-                    LoginTextFromField(hintText: "Email"),
-                    const SizedBox(height: 20),
-                    MaterialButton(
-                      onPressed: () {},
-                      height: 57,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                child: Form(
+                  key: _formkey,
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    children: [
+                      LoginTextFromField(
+                        hintText: "Email",
+                        validation: Validation.emailValidation,
                       ),
-                      minWidth: double.infinity,
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      child: Text(
-                        "Send",
-                        style: TextStyle(
-                          fontSize: 23,
-                          fontWeight: FontWeight.w500,
+                      const SizedBox(height: 20),
+                      MaterialButton(
+                        onPressed: () {
+                          if(_formkey.currentState!.validate()){
+
+                          }
+                        },
+                        height: 57,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        minWidth: double.infinity,
+                        color: Theme.of(context).primaryColor,
+                        textColor: Colors.white,
+                        child: Text(
+                          "Send",
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Container(
