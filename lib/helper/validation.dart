@@ -12,4 +12,11 @@ class Validation {
     }
     return null;
   }
+
+  static String? fullnameValidation(String? val) {
+    if (val != null && val.isEmpty) {
+      return "Please Enter your full name";
+    }
+    return null;
+  }
 }
