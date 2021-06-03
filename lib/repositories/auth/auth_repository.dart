@@ -82,7 +82,7 @@ class AuthRepository extends BaseAuthRepository {
       final authResult = await _firebaseAuth.signInWithCredential(credential);
       final user = authResult.user;
       await _firebaseFirestore.collection(Paths.users).doc(user?.uid).set({
-        "fullName": user?.displayName,
+        "displayName": user?.displayName,
         "email": user?.email,
         "photoURL": user?.photoURL,
       });

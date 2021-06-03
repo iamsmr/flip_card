@@ -17,7 +17,5 @@ class AuthUserChanged extends AuthEvent {
 }
 
 
-/// TODO: this may replacted with cuibid
-class AuthGoogleSignInRequest extends AuthEvent {}
 
 class AuthLogoutRequest extends AuthEvent {}

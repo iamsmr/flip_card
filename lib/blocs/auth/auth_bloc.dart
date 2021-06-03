@@ -30,10 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Stream<AuthState> mapEventToState(
     AuthEvent event,
   ) async* {
-    if (event is AuthGoogleSignInRequest) {
-      /// THis my [replacted] with Todo
-      await _authRepository.loginWithGoogleAccount();
-    } else if (event is AuthLogoutRequest) {
+    if (event is AuthLogoutRequest) {
       await _authRepository.logout();
     } else if (event is AuthUserChanged) {
       yield* _mapAuthUserChangedTodState(event);

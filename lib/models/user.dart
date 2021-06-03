@@ -32,9 +32,9 @@ class User extends Equatable {
     final data = doc.data() as Map;
     return User(
       id: doc.id,
-      displayName: data["id"],
-      email: data["displayName"],
-      photoURL: data["photoUrl"],
+      displayName: data["displayName"] ?? "",
+      email: data["email"] ?? "",
+      photoURL: data["photoUrl"] ?? "",
     );
   }
 

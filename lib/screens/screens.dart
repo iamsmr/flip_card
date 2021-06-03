@@ -11,3 +11,4 @@ export 'home/home_screen/home_screen.dart';
 export 'home/create_card/create_card_screen.dart';
 export 'home/createDecks/create_decks_screen.dart';
 export 'home/profile/profile_screen.dart';
+export 'home/profile/edit_profile.dart';
