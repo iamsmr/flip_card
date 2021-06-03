@@ -1,9 +1,11 @@
-
+import 'package:flip_card/blocs/blocs.dart';
 import 'package:flip_card/config/custom_route.dart';
+import 'package:flip_card/repositories/repositories.dart';
 import 'package:flip_card/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flip_card/enums/bottom_nav_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabNavigator extends StatelessWidget {
   static const String tabNavigatorRoot = "/";
@@ -46,7 +48,15 @@ class TabNavigator extends StatelessWidget {
       case BottomNavItem.createDeck:
         return CreateDecksScreen();
       case BottomNavItem.profile:
-        return ProfileScreen();
+        return BlocProvider<ProfileBloc>(
+          create: (context) => ProfileBloc(
+              authBloc: context.read<AuthBloc>(),
+              profileRepository: context.read<ProfileRepository>())
+            ..add(
+              ProfileLoadUser(userId: context.read<AuthBloc>().state.user!.uid),
+            ),
+          child: ProfileScreen(),
+        );
       default:
         return Scaffold();
     }

@@ -9,9 +9,12 @@ class ErrorDialog extends StatelessWidget {
     return AlertDialog(
       title: Row(
         children: [
-          Text("Something went wrong!"),
+          Text("oops error !"),
           Spacer(),
-          IconButton(onPressed: () {}, icon: Icon(Icons.close))
+          IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(Icons.close),
+          )
         ],
       ),
       content: Text(message),
