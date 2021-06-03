@@ -4,7 +4,7 @@ import 'package:flip_card/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends StatefulWidget {
   static const String routeName = "/forgotPassword";
   static Route route() {
     return MaterialPageRoute(
@@ -14,9 +14,14 @@ class ForgotPassword extends StatelessWidget {
   }
 
   @override
+  _ForgotPasswordState createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
+  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -96,9 +101,7 @@ class ForgotPassword extends StatelessWidget {
                       const SizedBox(height: 20),
                       MaterialButton(
                         onPressed: () {
-                          if(_formkey.currentState!.validate()){
-
-                          }
+                          if (_formkey.currentState!.validate()) {}
                         },
                         height: 57,
                         shape: RoundedRectangleBorder(

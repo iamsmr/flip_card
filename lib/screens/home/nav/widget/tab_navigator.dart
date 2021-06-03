@@ -1,4 +1,5 @@
 
+import 'package:flip_card/config/custom_route.dart';
 import 'package:flip_card/screens/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class TabNavigator extends StatelessWidget {
     return Navigator(
       key: navigatorKey,
       initialRoute: tabNavigatorRoot,
+      onGenerateRoute: CoustomRoute.onGenerateNestedRoute,
       onGenerateInitialRoutes: (_, initialRoute) {
         return [
           MaterialPageRoute(
