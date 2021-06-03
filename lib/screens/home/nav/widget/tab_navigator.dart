@@ -23,6 +23,7 @@ class TabNavigator extends StatelessWidget {
       onGenerateInitialRoutes: (_, initialRoute) {
         return [
           MaterialPageRoute(
+            settings: RouteSettings(name: tabNavigatorRoot),
             builder: (context) => routeBuilder[initialRoute]!(context),
           ),
         ];

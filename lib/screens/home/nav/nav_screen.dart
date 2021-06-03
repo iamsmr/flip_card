@@ -35,11 +35,12 @@ class _NavScreenState extends State<NavScreen> {
       child: BlocBuilder<BottomNavBarCubit, BottomNavBarState>(
         builder: (context, state) {
           return Scaffold(
-           
             body: Stack(
               children: _items
-                  .map((item, _) => MapEntry(item,
-                      _buildOffstageWidget(item, state.selctedItem == item)))
+                  .map(
+                    (item, _) => MapEntry(item,
+                        _buildOffstageWidget(item, item == state.selctedItem)),
+                  )
                   .values
                   .toList(),
             ),
