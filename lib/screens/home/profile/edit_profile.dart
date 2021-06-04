@@ -90,8 +90,7 @@ class EditProfile extends StatelessWidget {
                   ),
                   child: Form(
                     key: _formKey,
-                    child: ListView(
-                      shrinkWrap: true,
+                    child: Column(
                       children: [
                         if(state.status == EditProfileStatus.submitting)
                          const LinearProgressIndicator(),
