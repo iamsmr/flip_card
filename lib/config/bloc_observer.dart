@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SimpleBlocObserver extends BlocObserver {
-  @override
+ @override
   void onChange(BlocBase bloc, Change change) {
     print(change.toString());
     super.onChange(bloc, change);
-  }
+  } 
 
   @override
   void onClose(BlocBase bloc) {

@@ -5,12 +5,14 @@ class LoginTextFromField extends StatelessWidget {
   final bool isPassword;
   final void Function(String?)? onChange;
   final String? Function(String?)? validation;
+  final String? initialValue;
 
   const LoginTextFromField({
     this.hintText,
     this.isPassword = false,
     this.onChange,
     this.validation,
+    this.initialValue,
   });
 
   @override
@@ -18,6 +20,7 @@ class LoginTextFromField extends StatelessWidget {
     return TextFormField(
       validator: validation,
       onChanged: onChange,
+      initialValue: initialValue,
       obscureText: isPassword,
       decoration: InputDecoration(
         hintText: hintText,

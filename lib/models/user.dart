@@ -24,7 +24,7 @@ class User extends Equatable {
       "id": id,
       "displayName": displayName,
       "email": email,
-      "photoUrl": photoURL,
+      "photoURL": photoURL,
     };
   }
 
@@ -34,7 +34,7 @@ class User extends Equatable {
       id: doc.id,
       displayName: data["displayName"] ?? "",
       email: data["email"] ?? "",
-      photoURL: data["photoUrl"] ?? "",
+      photoURL: data["photoURL"] ?? "",
     );
   }
 

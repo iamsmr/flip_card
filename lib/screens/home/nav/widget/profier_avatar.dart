@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,7 +8,7 @@ class ProfileAvatar extends StatelessWidget {
   final String? profileImageUrl;
   final File? profileImage;
   const ProfileAvatar({
-    this.radius = 40,
+    required this.radius,
     this.profileImageUrl = "",
     this.profileImage,
   });

@@ -20,13 +20,15 @@ class CoustomRoute {
     }
   }
 
-  static Route onGenerateNestedRoute(RouteSettings routeSettings){
+  static Route onGenerateNestedRoute(RouteSettings routeSettings) {
     print("Nested Route: ${routeSettings.name}");
-    switch(routeSettings.name){
+    switch (routeSettings.name) {
       case EditProfile.routeName:
-        return EditProfile.route();
+        return EditProfile.route(
+          args: routeSettings.arguments as EditProfileScreenArgs,
+        );
       default:
-       return _error();
+        return _error();
     }
   }
 
