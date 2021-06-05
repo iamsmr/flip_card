@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
         RepositoryProvider<StorageRepository>(
           create: (context) => StorageRepository(),
         ),
+        RepositoryProvider<DecksRepository>(
+          create: (context) => DecksRepository(),
+        )
       ],
       child: MultiBlocProvider(
         providers: [

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flip_card/blocs/blocs.dart';
-import 'package:flip_card/constant/constant.dart';
 import 'package:flip_card/widgets/widgets.dart';
 
 class ProfileScreen extends StatelessWidget {

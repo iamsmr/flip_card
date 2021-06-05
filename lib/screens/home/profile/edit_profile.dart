@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flip_card/blocs/profile/profile_bloc.dart';
 import 'package:flip_card/helper/validation.dart';
-import 'package:flip_card/models/user.dart';
+import 'package:flip_card/models/models.dart';
 import 'package:flip_card/repositories/profile/profile_repository.dart';
 import 'package:flip_card/repositories/repositories.dart';
 import 'package:flip_card/screens/home/nav/widget/profier_avatar.dart';

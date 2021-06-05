@@ -6,3 +6,6 @@ export 'profile/profile_repository.dart';
 
 export 'storage/base_storage_repository.dart';
 export 'storage/storage_repository.dart';
+
+export 'decks/decks_base_repository.dart';
+export 'decks/decks_repository.dart';

@@ -48,7 +48,10 @@ class TabNavigator extends StatelessWidget {
         return CreateCardScreen();
       case BottomNavItem.createDeck:
         return BlocProvider<CreateDecksCubit>(
-          create: (context) => CreateDecksCubit(),
+          create: (context) => CreateDecksCubit(
+            authBloc: context.read<AuthBloc>(),
+            decksRepository: context.read<DecksRepository>(),
+          ),
           child: CreateDecksScreen(),
         );
       case BottomNavItem.profile:

@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flip_card/models/user.dart';
 
 class Decks extends Equatable {
-  final String id;
+  final String? id;
   final String title;
   final DateTime date;
   final Color color;
   final User creator;
   // final List<Card> cards  TODO://
   const Decks({
-    required this.id,
+    this.id,
     required this.title,
     required this.date,
     required this.color,
@@ -73,5 +73,5 @@ class Decks extends Equatable {
   }
 
   @override
-  List<Object?> get props => [title, date, color, creator, this.id];
+  List<Object?> get props => [title, date, color, creator, id];
 }
