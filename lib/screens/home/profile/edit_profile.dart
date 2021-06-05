@@ -59,7 +59,7 @@ class EditProfile extends StatelessWidget {
               message: state.failure.message,
             ),
           );
-        }else if(state.status == EditProfileStatus.success){
+        } else if (state.status == EditProfileStatus.success) {
           Navigator.pop(context);
         }
       },
@@ -88,49 +88,51 @@ class EditProfile extends StatelessWidget {
                     ),
                     color: Colors.white,
                   ),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        if(state.status == EditProfileStatus.submitting)
-                         const LinearProgressIndicator(),
-                        SizedBox(height: 40),
-                        GestureDetector(
-                          onTap: () => _selctedProfileImage(context),
-                          child: ProfileAvatar(
-                            profileImageUrl: user.photoURL,
-                            profileImage: state.profileImage,
-                            radius: 50,
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          if (state.status == EditProfileStatus.submitting)
+                            const LinearProgressIndicator(),
+                          SizedBox(height: 40),
+                          GestureDetector(
+                            onTap: () => _selctedProfileImage(context),
+                            child: ProfileAvatar(
+                              profileImageUrl: user.photoURL,
+                              profileImage: state.profileImage,
+                              radius: 50,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 40),
-                        LoginTextFromField(
-                          hintText: "Full Name",
-                          initialValue: user.displayName,
-                          onChange: (val) => context
-                              .read<EditProfileCubit>()
-                              .nameChanged(val!),
-                          validation: (val) =>
-                              Validation.fullnameValidation(val),
-                        ),
-                        SizedBox(height: 40),
-                        MaterialButton(
-                          minWidth: 200,
-                          height: 50,
-                          color: Theme.of(context).primaryColor,
-                          textColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
+                          SizedBox(height: 40),
+                          LoginTextFromField(
+                            hintText: "Full Name",
+                            initialValue: user.displayName,
+                            onChange: (val) => context
+                                .read<EditProfileCubit>()
+                                .nameChanged(val!),
+                            validation: (val) =>
+                                Validation.fullnameValidation(val),
                           ),
-                          child: Text("Updated"),
-                          onPressed: () {
-                            _submitForm(
-                              context,
-                              state.status == EditProfileStatus.submitting,
-                            );
-                          },
-                        )
-                      ],
+                          SizedBox(height: 40),
+                          MaterialButton(
+                            minWidth: 200,
+                            height: 50,
+                            color: Theme.of(context).primaryColor,
+                            textColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                            child: Text("Updated"),
+                            onPressed: () {
+                              _submitForm(
+                                context,
+                                state.status == EditProfileStatus.submitting,
+                              );
+                            },
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 )
@@ -142,12 +144,12 @@ class EditProfile extends StatelessWidget {
     );
   }
 
-  _selctedProfileImage(BuildContext context) async{
-    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
-    if(pickedFile != null){
+  _selctedProfileImage(BuildContext context) async {
+    final pickedFile =
+        await ImagePicker().getImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
       context.read<EditProfileCubit>().imageChanged(File(pickedFile.path));
     }
-
   }
 
   _submitForm(BuildContext context, bool isSumbiting) {

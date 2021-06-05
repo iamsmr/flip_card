@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flip_card/config/paths.dart';
+import 'package:flip_card/extension/hex_color_conver.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flip_card/models/user.dart';
@@ -28,40 +29,31 @@ class Decks extends Equatable {
     creator: User.empty,
   );
 
-  String toHex(Color color) {
-    return '${color.alpha.toRadixString(16).padLeft(2, '0')}'
-        '${color.red.toRadixString(16).padLeft(2, '0')}'
-        '${color.green.toRadixString(16).padLeft(2, '0')}'
-        '${color.blue.toRadixString(16).padLeft(2, '0')}';
-  }
-
-  static Color fromHex(String hexString) {
-    final buffer = StringBuffer();
-    if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
-    return Color(int.parse(buffer.toString(), radix: 16));
-  }
-
   Map<String, dynamic> toDocument() {
     return {
       "title": title,
       "date": Timestamp.fromDate(date),
-      "colorCode": toHex(color),
-      "user": FirebaseFirestore.instance
-          .collection(Paths.users)
-          .doc(creator.id)
-          .path as DocumentReference
+      "colorCode": color.toHex(),
+      "creator":
+          FirebaseFirestore.instance.collection(Paths.users).doc(creator.id)
     };
   }
 
-  Decks fromDocument(DocumentSnapshot snapshot) {
+  static Future<Decks?> fromDocument(DocumentSnapshot snapshot) async {
     final data = snapshot.data() as Map;
-    return Decks(
-      id: snapshot.id,
-      title: data["title"] ?? "",
-      date: (data["date"] as Timestamp).toDate(),
-      color: fromHex(data["color"]),
-      creator: creator,
-    );
+    final DocumentReference? creatorRef = data["creator"] as DocumentReference;
+    if (creatorRef != null) {
+      final creatorDOc = await creatorRef.get();
+      if (creatorDOc.exists) {
+        return Decks(
+          id: snapshot.id,
+          title: data["title"] ?? "",
+          date: (data["date"] as Timestamp).toDate(),
+          color: HexColor.fromHex(data["color"]),
+          creator: User.fromDocument(creatorDOc),
+        );
+      }
+    }
   }
 
   Decks copyWith({

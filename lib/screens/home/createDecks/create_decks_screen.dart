@@ -92,8 +92,7 @@ class CreateDecksScreen extends StatelessWidget {
                       selectedColor: state.selectedColor,
                       onTap: (Color color) {
                         context.read<CreateDecksCubit>().onColorChange(color);
-                        print(color.toHex());
-                        print(HexColor.fromHex(color.toHex()));
+                       
                       },
                     ),
                     SizedBox(height: 20),

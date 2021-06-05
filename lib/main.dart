@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flip Card',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(primaryColor: Color(0xff8893F1),appBarTheme: AppBarTheme(
-            elevation: 0,
-            centerTitle: true
-          )),
+          theme: ThemeData(
+            primaryColor: Color(0xff8893F1),
+            appBarTheme: AppBarTheme(elevation: 0, centerTitle: true),
+          ),
           initialRoute: '/splash',
           onGenerateRoute: CoustomRoute.onGenerateRoute,
         ),

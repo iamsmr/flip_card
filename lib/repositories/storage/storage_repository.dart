@@ -29,7 +29,7 @@ class StorageRepository extends BaseStorageRepository {
   }) async {
     var imageId = Uuid().v4();
 
-    if (url != null && url.isNotEmpty) {
+    if (url != null && url.isNotEmpty && !url.contains("googleusercontent")) {
       final exp = RegExp(r'userProfile_(.*).jpg');
       imageId = exp.firstMatch(url)![1]!;
     }

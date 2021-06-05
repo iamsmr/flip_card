@@ -18,7 +18,7 @@ class CreateDecksState extends Equatable {
   factory CreateDecksState.initial() {
     return CreateDecksState(
       failure: Failure(),
-      selectedColor: Color(0xffFFA68A),
+      selectedColor: Color(0xffFFE58A),
       decksTitle: "",
       status: CreateDecksStatus.initial,
     );
