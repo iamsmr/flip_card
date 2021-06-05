@@ -11,12 +11,15 @@ part 'create_decks_state.dart';
 class CreateDecksCubit extends Cubit<CreateDecksState> {
   final AuthBloc _authBloc;
   final DecksRepository _decksRepository;
+  final ProfileBloc _profileBloc;
 
   CreateDecksCubit({
+    required ProfileBloc profileBloc,
     required AuthBloc authBloc,
     required DecksRepository decksRepository,
   })  : _authBloc = authBloc,
         _decksRepository = decksRepository,
+        _profileBloc = profileBloc,
         super(CreateDecksState.initial());
 
   void decksTitleChanged(String value) {
@@ -48,6 +51,7 @@ class CreateDecksCubit extends Cubit<CreateDecksState> {
       );
 
       await _decksRepository.createDecks(decks: decks);
+      _profileBloc.add(ProfileLoadUser(userId: _authBloc.state.user!.uid));
       emit(state.copyWith(status: CreateDecksStatus.success));
     } catch (e) {
       emit(

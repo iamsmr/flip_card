@@ -37,7 +37,20 @@ class TabNavigator extends StatelessWidget {
   }
 
   Map<String, WidgetBuilder> _routeBuilder() {
-    return {tabNavigatorRoot: (context) => _getScreen(context, item)};
+    return {
+      tabNavigatorRoot: (context) => BlocProvider<ProfileBloc>(
+            create: (context) => ProfileBloc(
+                decksRepository: context.read<DecksRepository>(),
+                authBloc: context.read<AuthBloc>(),
+                profileRepository: context.read<ProfileRepository>())
+              ..add(
+                ProfileLoadUser(
+                  userId: context.read<AuthBloc>().state.user!.uid,
+                ),
+              ),
+            child: _getScreen(context, item),
+          )
+    };
   }
 
   Widget _getScreen(BuildContext context, BottomNavItem item) {
@@ -49,21 +62,14 @@ class TabNavigator extends StatelessWidget {
       case BottomNavItem.createDeck:
         return BlocProvider<CreateDecksCubit>(
           create: (context) => CreateDecksCubit(
+            profileBloc: context.read<ProfileBloc>(),
             authBloc: context.read<AuthBloc>(),
             decksRepository: context.read<DecksRepository>(),
           ),
           child: CreateDecksScreen(),
         );
       case BottomNavItem.profile:
-        return BlocProvider<ProfileBloc>(
-          create: (context) => ProfileBloc(
-              authBloc: context.read<AuthBloc>(),
-              profileRepository: context.read<ProfileRepository>())
-            ..add(
-              ProfileLoadUser(userId: context.read<AuthBloc>().state.user!.uid),
-            ),
-          child: ProfileScreen(),
-        );
+        return ProfileScreen();
       default:
         return Scaffold();
     }

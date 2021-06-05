@@ -49,7 +49,7 @@ class Decks extends Equatable {
           id: snapshot.id,
           title: data["title"] ?? "",
           date: (data["date"] as Timestamp).toDate(),
-          color: HexColor.fromHex(data["color"]),
+          color: HexColor.fromHex(data["colorCode"]),
           creator: User.fromDocument(creatorDOc),
         );
       }

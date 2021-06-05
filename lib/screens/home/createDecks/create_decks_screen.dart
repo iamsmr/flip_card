@@ -63,7 +63,8 @@ class CreateDecksScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       SizedBox(height: 30),
-                      Container(
+                      AnimatedContainer(
+                        duration: Duration(seconds: 1),
                         padding: EdgeInsets.all(20),
                         height: 240,
                         width: 240,
@@ -157,8 +158,7 @@ class ColorPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: Duration(microseconds: 1),
+    return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
@@ -173,9 +173,10 @@ class ColorPicker extends StatelessWidget {
       onTap: () {
         onTap(color);
       },
-      child: Container(
-        height: 40,
-        width: 40,
+      child: AnimatedContainer(
+        duration: Duration(microseconds: 2),
+        height: isSelected ? 45 : 40,
+        width: isSelected ? 45 : 40,
         decoration: BoxDecoration(
           color: color,
           shape: BoxShape.circle,

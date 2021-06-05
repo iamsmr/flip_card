@@ -16,10 +16,11 @@ class DecksRepository extends BaseDecksRepositry {
 
   @override
   Stream<List<Future<Decks?>>> getDecks({required String userId}) {
+    final creatorRef= _firebaseFirestore.collection(Paths.users).doc(userId);
     return _firebaseFirestore
         .collection(Paths.decks)
-        .where("creator", isEqualTo: userId)
-        .orderBy("data", descending: false)
+        .where("creator", isEqualTo: creatorRef)
+        .orderBy("date", descending: false)
         .snapshots()
         .map(
       (snap) {

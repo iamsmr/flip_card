@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flip_card/helper/image_helper.dart';
 import 'package:flip_card/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,6 +14,7 @@ import 'package:flip_card/repositories/repositories.dart';
 import 'package:flip_card/screens/home/nav/widget/profier_avatar.dart';
 import 'package:flip_card/screens/home/profile/cubit/edit_profile_cubit.dart';
 import 'package:flip_card/widgets/login_text_from_field.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfileScreenArgs {
@@ -101,7 +103,7 @@ class EditProfile extends StatelessWidget {
                             child: ProfileAvatar(
                               profileImageUrl: user.photoURL,
                               profileImage: state.profileImage,
-                              radius: 50,
+                              radius: 70,
                             ),
                           ),
                           SizedBox(height: 40),
@@ -145,8 +147,11 @@ class EditProfile extends StatelessWidget {
   }
 
   _selctedProfileImage(BuildContext context) async {
-    final pickedFile =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+    final pickedFile = await ImageHelper.pickImageFromGallery(
+      context: context,
+      cropStyle: CropStyle.circle,
+      title: "Profile Image",
+    );
     if (pickedFile != null) {
       context.read<EditProfileCubit>().imageChanged(File(pickedFile.path));
     }

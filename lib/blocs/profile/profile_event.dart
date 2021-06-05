@@ -16,3 +16,12 @@ class ProfileLoadUser extends ProfileEvent {
   @override
   List<Object?> get props => [userId];
 }
+
+class ProfileUpdateDecks extends ProfileEvent {
+  final List<Decks?> decks;
+
+  const ProfileUpdateDecks({required this.decks});
+
+  @override
+  List<Object?> get props => [decks];
+}
