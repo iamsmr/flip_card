@@ -1,5 +1,6 @@
-import 'package:flip_card/models/models.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/models/models.dart';
+import 'package:flash_card/widgets/widgets.dart';
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 
 class CreateCardScreen extends StatelessWidget {
@@ -86,7 +87,46 @@ class CreateCardScreen extends StatelessWidget {
                     )
                     .toList(),
               ),
-              Spacer(),
+              SizedBox(height: 20),
+              Expanded(
+                child: FlipCard(
+                  back: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.fromRGBO(85, 85, 85, 0.25),
+                            offset: Offset(3, 10),
+                            blurRadius: 10)
+                      ],
+                      color: Color.fromRGBO(255, 229, 138, 1),
+                    ),
+                  ),
+                  front: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.fromRGBO(85, 85, 85, 0.25),
+                            offset: Offset(3, 10),
+                            blurRadius: 10)
+                      ],
+                      color: Color.fromRGBO(255, 229, 138, 1),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 30),
               ColorPicker(
                 colors: colors,
                 selectedColor: Color(0xffFFE58A),
