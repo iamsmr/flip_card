@@ -1,3 +1,4 @@
+import 'package:flip_card/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class CreateCardScreen extends StatelessWidget {
@@ -6,9 +7,9 @@ class CreateCardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Create card page"),
-      ),
-    );
+        body: CustomAppBar(
+      header: Container(),
+      child: Container(),
+    ));
   }
 }
