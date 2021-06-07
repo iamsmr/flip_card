@@ -5,9 +5,14 @@ class CustomAppBar extends StatelessWidget {
   final Widget header;
   final Widget child;
   final Widget? footer;
-  const CustomAppBar(
-      {Key? key, required this.header, required this.child, this.footer})
-      : super(key: key);
+  final double? headerTopMargin;
+  const CustomAppBar({
+    Key? key,
+    this.headerTopMargin,
+    required this.header,
+    required this.child,
+    this.footer,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,7 @@ class CustomAppBar extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(20, 20, 20, 26),
-            margin: EdgeInsets.fromLTRB(20, 120, 20, 30),
+            margin: EdgeInsets.fromLTRB(20, headerTopMargin ?? 120, 20, 30),
             width: double.infinity,
             decoration: BoxDecoration(
               color: Colors.white,

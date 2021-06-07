@@ -7,9 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flip_card/blocs/blocs.dart';
 import 'package:flip_card/widgets/widgets.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileBloc, ProfileState>(
@@ -24,8 +29,6 @@ class ProfileScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        // context.read<ProfileBloc>().add(ProfileLoadUser(userId: state.user.id));
-
         print(state.decks);
         return Scaffold(
           body: RefreshIndicator(
@@ -46,25 +49,19 @@ class ProfileScreen extends StatelessWidget {
                         Spacer(),
                         Text(
                           "Profile",
-                          style: TextStyle(
-                            fontSize: 22,
-                            color: Colors.white,
-                          ),
+                          style: TextStyle(fontSize: 22, color: Colors.white),
                         ),
                         Spacer(),
                         IconButton(
-                          onPressed: () {
-                            context.read<AuthBloc>().add(AuthLogoutRequest());
-                          },
+                          onPressed: () =>
+                              context.read<AuthBloc>().add(AuthLogoutRequest()),
                           color: Colors.white,
                           icon: Icon(Icons.exit_to_app),
                         ),
                         IconButton(
-                          onPressed: () {
-                            context
-                                .read<ProfileBloc>()
-                                .add(ProfileLoadUser(userId: state.user.id));
-                          },
+                          onPressed: () => context
+                              .read<ProfileBloc>()
+                              .add(ProfileLoadUser(userId: state.user.id)),
                           color: Colors.white,
                           icon: Icon(Icons.refresh),
                         )
@@ -114,8 +111,10 @@ class ProfileScreen extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       "My decks",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -123,7 +122,6 @@ class ProfileScreen extends StatelessWidget {
                     height: 60,
                     alignment: Alignment.topLeft,
                     child: ListView.builder(
-                      shrinkWrap: true,
                       itemCount: state.decks.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
@@ -136,8 +134,9 @@ class ProfileScreen extends StatelessWidget {
                                 width: 80,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                    color: state.decks[index]!.color,
-                                    borderRadius: BorderRadius.circular(10)),
+                                  color: state.decks[index]!.color,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 child: Text(
                                   state.decks[index]!.title,
                                   overflow: TextOverflow.ellipsis,
@@ -154,18 +153,14 @@ class ProfileScreen extends StatelessWidget {
                               right: 22,
                               top: 5,
                               child: GestureDetector(
-                                onTap: () {
-                                  deleteConformationDialgo(context);
-                                },
+                                onTap: () => deleteConformationDialgo(context),
                                 child: Container(
                                   padding: EdgeInsets.all(2),
                                   decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                  child: Icon(
-                                    Icons.close,
-                                    size: 13,
+                                    color: Colors.white,
+                                    shape: BoxShape.circle,
                                   ),
+                                  child: Icon(Icons.close, size: 13),
                                 ),
                               ),
                             )
@@ -188,18 +183,16 @@ class ProfileScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
           title: Row(
             children: [
               Text("Delete Conformation", style: TextStyle(fontSize: 16)),
               Spacer(),
               IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(
-                  Icons.cancel_outlined,
-                  color: Colors.grey,
-                ),
+                icon: Icon(Icons.cancel_outlined, color: Colors.grey),
               )
             ],
           ),
@@ -209,12 +202,11 @@ class ProfileScreen extends StatelessWidget {
               Text("are you sure want to delete ?"),
               SizedBox(height: 20),
               Text(
-                
                 "Warning: all card insid this deks will delete",
                 style: TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.bold,
-                  fontSize: 14
+                  fontSize: 14,
                 ),
               ),
             ],

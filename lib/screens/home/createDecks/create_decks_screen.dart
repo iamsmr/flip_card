@@ -45,6 +45,7 @@ class CreateDecksScreen extends StatelessWidget {
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             body: CustomAppBar(
+              headerTopMargin: 150,
               header: Column(
                 children: [
                   SizedBox(height: 30),

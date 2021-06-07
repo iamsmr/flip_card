@@ -34,6 +34,7 @@ class _ResisterScreenState extends State<ResisterScreen> {
           builder: (context, state) {
             bool isLoading = state.status == RegisterStatus.submitting;
             return CustomAppBar(
+              headerTopMargin: 230,
               header: Column(
                 children: [
                   if (isLoading)

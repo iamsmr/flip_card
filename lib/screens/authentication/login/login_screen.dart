@@ -37,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           builder: (context, state) {
             bool isLoading = state.status == LoginStatus.submitting;
             return CustomAppBar(
+              headerTopMargin: 230,
               footer: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
