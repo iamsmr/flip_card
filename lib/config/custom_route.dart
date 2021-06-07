@@ -1,4 +1,4 @@
-import 'package:flip_card/screens/home/profile/edit_profile.dart';
+import 'package:flash_card/screens/home/profile/edit_profile.dart';
 import 'package:flutter/material.dart';
 import '../screens/screens.dart';
 

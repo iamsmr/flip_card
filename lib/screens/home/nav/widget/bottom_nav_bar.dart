@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flip_card/enums/enums.dart';
+import 'package:flash_card/enums/enums.dart';
 
 class BottomNavBar extends StatelessWidget {
   final Map<BottomNavItem, IconData> items;
@@ -20,7 +20,7 @@ class BottomNavBar extends StatelessWidget {
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
       unselectedItemColor: Color(0xffA3A3A3),
-      selectedItemColor:Theme.of(context).primaryColor,
+      selectedItemColor: Theme.of(context).primaryColor,
       currentIndex: items.keys.toList().indexOf(selectedItem),
       items: items
           .map((item, icon) {

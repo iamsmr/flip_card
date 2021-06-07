@@ -1,8 +1,8 @@
-import 'package:flip_card/blocs/auth/auth_bloc.dart';
-import 'package:flip_card/enums/bottom_nav_item.dart';
-import 'package:flip_card/screens/home/nav/cubit/bottom_nav_bar_cubit.dart';
-import 'package:flip_card/screens/home/nav/widget/bottom_nav_bar.dart';
-import 'package:flip_card/screens/home/nav/widget/widgets.dart';
+import 'package:flash_card/blocs/auth/auth_bloc.dart';
+import 'package:flash_card/enums/bottom_nav_item.dart';
+import 'package:flash_card/screens/home/nav/cubit/bottom_nav_bar_cubit.dart';
+import 'package:flash_card/screens/home/nav/widget/bottom_nav_bar.dart';
+import 'package:flash_card/screens/home/nav/widget/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

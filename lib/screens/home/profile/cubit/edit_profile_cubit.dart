@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flip_card/blocs/profile/profile_bloc.dart';
-import 'package:flip_card/models/Failure.dart';
-import 'package:flip_card/repositories/repositories.dart';
+import 'package:flash_card/blocs/profile/profile_bloc.dart';
+import 'package:flash_card/models/Failure.dart';
+import 'package:flash_card/repositories/repositories.dart';
 
 part 'edit_profile_state.dart';
 

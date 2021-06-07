@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flip_card/helper/validation.dart';
-import 'package:flip_card/screens/authentication/register/cubit/register_cubit.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/helper/validation.dart';
+import 'package:flash_card/screens/authentication/register/cubit/register_cubit.dart';
+import 'package:flash_card/widgets/widgets.dart';
 
 class ResisterScreen extends StatefulWidget {
   final Function toggleScreen;

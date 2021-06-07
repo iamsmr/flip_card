@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flip_card/config/paths.dart';
-import 'package:flip_card/models/user.dart';
-import 'package:flip_card/repositories/repositories.dart';
+import 'package:flash_card/config/paths.dart';
+import 'package:flash_card/models/user.dart';
+import 'package:flash_card/repositories/repositories.dart';
 
 class ProfileRepository extends BaseProfileRepository {
   final FirebaseFirestore _firebaseFirestore;

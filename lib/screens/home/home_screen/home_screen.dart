@@ -1,5 +1,4 @@
-import 'package:flip_card/constant/constant.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {

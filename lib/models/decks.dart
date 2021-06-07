@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flip_card/config/paths.dart';
-import 'package:flip_card/extension/hex_color_conver.dart';
+import 'package:flash_card/config/paths.dart';
+import 'package:flash_card/extension/hex_color_conver.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flip_card/models/user.dart';
+import 'package:flash_card/models/user.dart';
 
 class Decks extends Equatable {
   final String? id;

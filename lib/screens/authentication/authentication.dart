@@ -1,6 +1,6 @@
-import 'package:flip_card/repositories/auth/auth_repository.dart';
-import 'package:flip_card/screens/authentication/register/cubit/register_cubit.dart';
-import 'package:flip_card/screens/screens.dart';
+import 'package:flash_card/repositories/auth/auth_repository.dart';
+import 'package:flash_card/screens/authentication/register/cubit/register_cubit.dart';
+import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

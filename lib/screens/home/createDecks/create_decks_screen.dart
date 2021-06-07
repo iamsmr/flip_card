@@ -1,6 +1,6 @@
-import 'package:flip_card/screens/home/createDecks/cubit/create_decks_cubit.dart';
+import 'package:flash_card/screens/home/createDecks/cubit/create_decks_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/widgets/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flip_card/models/models.dart';
-import 'package:flip_card/repositories/repositories.dart';
+import 'package:flash_card/models/models.dart';
+import 'package:flash_card/repositories/repositories.dart';
 
 part 'login_state.dart';
 
@@ -40,7 +40,6 @@ class LoginCubit extends Cubit<LoginState> {
     if (!state.isValid && state.status == LoginStatus.submitting) return;
     emit(state.copyWith(status: LoginStatus.submitting));
     try {
-      
       await _authRepository.loginWithGoogleAccount();
     } on Failure catch (e) {
       emit(state.copyWith(failure: e, status: LoginStatus.error));

@@ -1,8 +1,7 @@
-import 'package:flip_card/constant/constant.dart';
-import 'package:flip_card/helper/validation.dart';
-import 'package:flip_card/screens/authentication/login/cubit/login_cubit.dart';
-import 'package:flip_card/screens/screens.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/helper/validation.dart';
+import 'package:flash_card/screens/authentication/login/cubit/login_cubit.dart';
+import 'package:flash_card/screens/screens.dart';
+import 'package:flash_card/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flip_card/config/paths.dart';
-import 'package:flip_card/models/models.dart';
-import 'package:flip_card/repositories/repositories.dart';
+import 'package:flash_card/config/paths.dart';
+import 'package:flash_card/models/models.dart';
+import 'package:flash_card/repositories/repositories.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 

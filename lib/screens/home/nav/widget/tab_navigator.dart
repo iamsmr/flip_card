@@ -1,11 +1,11 @@
-import 'package:flip_card/blocs/blocs.dart';
-import 'package:flip_card/config/custom_route.dart';
-import 'package:flip_card/repositories/repositories.dart';
-import 'package:flip_card/screens/home/createDecks/cubit/create_decks_cubit.dart';
-import 'package:flip_card/screens/screens.dart';
+import 'package:flash_card/blocs/blocs.dart';
+import 'package:flash_card/config/custom_route.dart';
+import 'package:flash_card/repositories/repositories.dart';
+import 'package:flash_card/screens/home/createDecks/cubit/create_decks_cubit.dart';
+import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flip_card/enums/bottom_nav_item.dart';
+import 'package:flash_card/enums/bottom_nav_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TabNavigator extends StatelessWidget {

@@ -1,19 +1,19 @@
 import 'dart:io';
 
-import 'package:flip_card/helper/image_helper.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/helper/image_helper.dart';
+import 'package:flash_card/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flip_card/blocs/profile/profile_bloc.dart';
-import 'package:flip_card/helper/validation.dart';
-import 'package:flip_card/models/models.dart';
-import 'package:flip_card/repositories/profile/profile_repository.dart';
-import 'package:flip_card/repositories/repositories.dart';
-import 'package:flip_card/screens/home/nav/widget/profier_avatar.dart';
-import 'package:flip_card/screens/home/profile/cubit/edit_profile_cubit.dart';
-import 'package:flip_card/widgets/login_text_from_field.dart';
+import 'package:flash_card/blocs/profile/profile_bloc.dart';
+import 'package:flash_card/helper/validation.dart';
+import 'package:flash_card/models/models.dart';
+import 'package:flash_card/repositories/profile/profile_repository.dart';
+import 'package:flash_card/repositories/repositories.dart';
+import 'package:flash_card/screens/home/nav/widget/profier_avatar.dart';
+import 'package:flash_card/screens/home/profile/cubit/edit_profile_cubit.dart';
+import 'package:flash_card/widgets/login_text_from_field.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 

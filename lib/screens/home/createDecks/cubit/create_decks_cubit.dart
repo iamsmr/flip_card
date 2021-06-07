@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flip_card/blocs/blocs.dart';
-import 'package:flip_card/models/Failure.dart';
-import 'package:flip_card/models/models.dart';
+import 'package:flash_card/blocs/blocs.dart';
+import 'package:flash_card/models/Failure.dart';
+import 'package:flash_card/models/models.dart';
 import 'package:flutter/material.dart';
-import 'package:flip_card/repositories/repositories.dart';
+import 'package:flash_card/repositories/repositories.dart';
 
 part 'create_decks_state.dart';
 
@@ -28,7 +28,8 @@ class CreateDecksCubit extends Cubit<CreateDecksState> {
       decksTitle: value,
     ));
   }
-  void reset(){
+
+  void reset() {
     emit(CreateDecksState.initial());
   }
 

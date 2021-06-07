@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:flip_card/blocs/blocs.dart';
-import 'package:flip_card/screens/home/nav/cubit/bottom_nav_bar_cubit.dart';
-import 'package:flip_card/screens/screens.dart';
+import 'package:flash_card/blocs/blocs.dart';
+import 'package:flash_card/screens/home/nav/cubit/bottom_nav_bar_cubit.dart';
+import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

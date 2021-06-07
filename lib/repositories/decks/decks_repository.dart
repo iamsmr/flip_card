@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flip_card/config/paths.dart';
-import 'package:flip_card/models/decks.dart';
-import 'package:flip_card/repositories/repositories.dart';
+import 'package:flash_card/config/paths.dart';
+import 'package:flash_card/models/decks.dart';
+import 'package:flash_card/repositories/repositories.dart';
 
 class DecksRepository extends BaseDecksRepositry {
   final FirebaseFirestore _firebaseFirestore;
@@ -16,7 +16,7 @@ class DecksRepository extends BaseDecksRepositry {
 
   @override
   Stream<List<Future<Decks?>>> getDecks({required String userId}) {
-    final creatorRef= _firebaseFirestore.collection(Paths.users).doc(userId);
+    final creatorRef = _firebaseFirestore.collection(Paths.users).doc(userId);
     return _firebaseFirestore
         .collection(Paths.decks)
         .where("creator", isEqualTo: creatorRef)

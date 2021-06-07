@@ -1,11 +1,11 @@
-import 'package:flip_card/screens/home/nav/widget/profier_avatar.dart';
-import 'package:flip_card/screens/screens.dart';
+import 'package:flash_card/screens/home/nav/widget/profier_avatar.dart';
+import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flip_card/blocs/blocs.dart';
-import 'package:flip_card/widgets/widgets.dart';
+import 'package:flash_card/blocs/blocs.dart';
+import 'package:flash_card/widgets/widgets.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);

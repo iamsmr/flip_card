@@ -1,4 +1,4 @@
-import 'package:flip_card/constant/constant.dart';
+import 'package:flash_card/constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
