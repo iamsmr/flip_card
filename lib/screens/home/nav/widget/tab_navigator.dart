@@ -2,6 +2,7 @@ import 'package:flash_card/blocs/blocs.dart';
 import 'package:flash_card/config/custom_route.dart';
 import 'package:flash_card/repositories/repositories.dart';
 import 'package:flash_card/screens/home/createDecks/cubit/create_decks_cubit.dart';
+import 'package:flash_card/screens/home/create_card/cubit/create_card_cubit.dart';
 import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +59,10 @@ class TabNavigator extends StatelessWidget {
       case BottomNavItem.home:
         return HomeScreen();
       case BottomNavItem.createCard:
-        return CreateCardScreen();
+        return BlocProvider<CreateCardCubit>(
+          create: (context) => CreateCardCubit(),
+          child: CreateCardScreen(),
+        );
       case BottomNavItem.createDeck:
         return BlocProvider<CreateDecksCubit>(
           create: (context) => CreateDecksCubit(
