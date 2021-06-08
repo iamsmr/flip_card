@@ -14,14 +14,12 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final ProfileRepository _profileRepository;
   final DecksRepository _decksRepository;
-  final AuthBloc _authBloc;
 
   ProfileBloc({
     required DecksRepository decksRepository,
     required ProfileRepository profileRepository,
     required AuthBloc authBloc,
   })  : _profileRepository = profileRepository,
-        _authBloc = authBloc,
         _decksRepository = decksRepository,
         super(ProfileState.initial());
 

@@ -1,4 +1,4 @@
-import 'package:flash_card/repositories/auth/auth_repository.dart';
+import 'package:flash_card/repositories/repositories.dart';
 import 'package:flash_card/screens/authentication/register/cubit/register_cubit.dart';
 import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/material.dart';

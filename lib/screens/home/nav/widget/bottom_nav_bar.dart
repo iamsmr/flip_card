@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flash_card/enums/enums.dart';
 
 class BottomNavBar extends StatelessWidget {

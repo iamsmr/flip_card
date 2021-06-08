@@ -1,4 +1,3 @@
-import 'package:flash_card/blocs/auth/auth_bloc.dart';
 import 'package:flash_card/enums/bottom_nav_item.dart';
 import 'package:flash_card/screens/home/nav/cubit/bottom_nav_bar_cubit.dart';
 import 'package:flash_card/screens/home/nav/widget/bottom_nav_bar.dart';

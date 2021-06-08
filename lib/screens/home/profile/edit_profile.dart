@@ -1,21 +1,19 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flash_card/helper/image_helper.dart';
 import 'package:flash_card/widgets/widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flash_card/blocs/profile/profile_bloc.dart';
-import 'package:flash_card/helper/validation.dart';
-import 'package:flash_card/models/models.dart';
-import 'package:flash_card/repositories/profile/profile_repository.dart';
 import 'package:flash_card/repositories/repositories.dart';
+import 'package:flash_card/models/models.dart';
+import 'package:flash_card/helper/validation.dart';
+import 'package:flash_card/blocs/blocs.dart';
+
 import 'package:flash_card/screens/home/nav/widget/profier_avatar.dart';
 import 'package:flash_card/screens/home/profile/cubit/edit_profile_cubit.dart';
-import 'package:flash_card/widgets/login_text_from_field.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 
 class EditProfileScreenArgs {
   final BuildContext context;
@@ -24,13 +22,8 @@ class EditProfileScreenArgs {
 
 class EditProfile extends StatelessWidget {
   final User user;
-  EditProfile({
-    Key? key,
-    required this.user,
-  }) : super(key: key);
-
+  EditProfile({required this.user});
   final _formKey = GlobalKey<FormState>();
-
   static const String routeName = "/editProfile";
   static Route route({required EditProfileScreenArgs args}) {
     return MaterialPageRoute(
@@ -57,9 +50,7 @@ class EditProfile extends StatelessWidget {
         if (state.status == EditProfileStatus.error) {
           showDialog(
             context: context,
-            builder: (_) => ErrorDialog(
-              message: state.failure.message,
-            ),
+            builder: (_) => ErrorDialog(message: state.failure.message),
           );
         } else if (state.status == EditProfileStatus.success) {
           Navigator.pop(context);
@@ -69,10 +60,7 @@ class EditProfile extends StatelessWidget {
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
-            appBar: AppBar(
-              title: Text("Edit Profile"),
-              elevation: 0,
-            ),
+            appBar: AppBar(title: Text("Edit Profile"), elevation: 0),
             body: Stack(
               children: [
                 Container(
@@ -81,10 +69,10 @@ class EditProfile extends StatelessWidget {
                 ),
                 Container(
                   width: double.infinity,
-                  margin: EdgeInsets.only(top: 20),
-                  padding: EdgeInsets.all(30),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
+                  margin: const EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.all(30),
+                  decoration: const BoxDecoration(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30),
                     ),
@@ -97,7 +85,7 @@ class EditProfile extends StatelessWidget {
                         children: [
                           if (state.status == EditProfileStatus.submitting)
                             const LinearProgressIndicator(),
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                           GestureDetector(
                             onTap: () => _selctedProfileImage(context),
                             child: ProfileAvatar(
@@ -106,7 +94,7 @@ class EditProfile extends StatelessWidget {
                               radius: 70,
                             ),
                           ),
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                           LoginTextFromField(
                             hintText: "Full Name",
                             initialValue: user.displayName,
@@ -116,7 +104,7 @@ class EditProfile extends StatelessWidget {
                             validation: (val) =>
                                 Validation.fullnameValidation(val),
                           ),
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                           MaterialButton(
                             minWidth: 200,
                             height: 50,

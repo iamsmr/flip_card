@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flash_card/models/Failure.dart';
-import 'package:flash_card/repositories/auth/auth_repository.dart';
+import 'package:flash_card/repositories/repositories.dart';
 
 part 'register_state.dart';
 

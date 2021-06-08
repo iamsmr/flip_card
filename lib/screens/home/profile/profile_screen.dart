@@ -1,4 +1,4 @@
-import 'package:flash_card/screens/home/nav/widget/profier_avatar.dart';
+import 'package:flash_card/screens/home/nav/widget/widgets.dart';
 import 'package:flash_card/screens/screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,155 +22,142 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if (state.status == ProfileStatus.error) {
           showDialog(
             context: context,
-            builder: (_) => ErrorDialog(
-              message: state.failure.message,
-            ),
+            builder: (_) => ErrorDialog(message: state.failure.message),
           );
         }
       },
       builder: (context, state) {
         print(state.decks);
         return Scaffold(
-          body: RefreshIndicator(
-            onRefresh: () {
-              context
-                  .read<ProfileBloc>()
-                  .add(ProfileLoadUser(userId: state.user.id));
-              throw "";
-            },
-            child: CustomAppBar(
-              header: Column(
-                children: [
-                  SizedBox(height: 30),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Spacer(),
-                        Text(
-                          "Profile",
-                          style: TextStyle(fontSize: 22, color: Colors.white),
-                        ),
-                        Spacer(),
-                        IconButton(
-                          onPressed: () =>
-                              context.read<AuthBloc>().add(AuthLogoutRequest()),
-                          color: Colors.white,
-                          icon: Icon(Icons.exit_to_app),
-                        ),
-                        IconButton(
-                          onPressed: () => context
-                              .read<ProfileBloc>()
-                              .add(ProfileLoadUser(userId: state.user.id)),
-                          color: Colors.white,
-                          icon: Icon(Icons.refresh),
-                        )
-                      ],
-                    ),
+          body: CustomAppBar(
+            header: Column(
+              children: [
+                const SizedBox(height: 30),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Spacer(),
+                      Text(
+                        "Profile",
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
+                      Spacer(),
+                      IconButton(
+                        onPressed: () =>
+                            context.read<AuthBloc>().add(AuthLogoutRequest()),
+                        color: Colors.white,
+                        icon: Icon(Icons.exit_to_app),
+                      ),
+                      IconButton(
+                        onPressed: () => context
+                            .read<ProfileBloc>()
+                            .add(ProfileLoadUser(userId: state.user.id)),
+                        color: Colors.white,
+                        icon: Icon(Icons.refresh),
+                      )
+                    ],
                   ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  SizedBox(height: 20),
-                  ProfileAvatar(
-                    radius: 50,
-                    profileImageUrl: state.user.photoURL,
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                ProfileAvatar(
+                  radius: 50,
+                  profileImageUrl: state.user.photoURL,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  state.user.displayName,
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  state.user.email,
+                  style: TextStyle(color: Colors.grey[800]),
+                ),
+                const SizedBox(height: 30),
+                MaterialButton(
+                  minWidth: 200,
+                  height: 50,
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
                   ),
-                  SizedBox(height: 24),
-                  Text(
-                    state.user.displayName,
+                  child: Text("Edit Profile"),
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    EditProfile.routeName,
+                    arguments: EditProfileScreenArgs(context: context),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "My decks",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 5),
-                  Text(
-                    state.user.email,
-                    style: TextStyle(color: Colors.grey[800]),
-                  ),
-                  SizedBox(height: 30),
-                  MaterialButton(
-                    minWidth: 200,
-                    height: 50,
-                    color: Theme.of(context).primaryColor,
-                    textColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                    child: Text("Edit Profile"),
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      EditProfile.routeName,
-                      arguments: EditProfileScreenArgs(context: context),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "My decks",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    height: 60,
-                    alignment: Alignment.topLeft,
-                    child: ListView.builder(
-                      itemCount: state.decks.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Stack(
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  height: 60,
+                  alignment: Alignment.topLeft,
+                  child: ListView.builder(
+                    itemCount: state.decks.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: () {},
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              width: 80,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: state.decks[index]!.color,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(
+                                state.decks[index]!.title,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[700],
+                                ),
+                              ),
+                              margin: EdgeInsets.only(right: 20),
+                            ),
+                          ),
+                          Positioned(
+                            right: 22,
+                            top: 5,
+                            child: GestureDetector(
+                              onTap: () => deleteConformationDialgo(context),
                               child: Container(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                width: 80,
-                                alignment: Alignment.center,
+                                padding: EdgeInsets.all(2),
                                 decoration: BoxDecoration(
-                                  color: state.decks[index]!.color,
-                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
                                 ),
-                                child: Text(
-                                  state.decks[index]!.title,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                                margin: EdgeInsets.only(right: 20),
+                                child: Icon(Icons.close, size: 13),
                               ),
                             ),
-                            Positioned(
-                              right: 22,
-                              top: 5,
-                              child: GestureDetector(
-                                onTap: () => deleteConformationDialgo(context),
-                                child: Container(
-                                  padding: EdgeInsets.all(2),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Icon(Icons.close, size: 13),
-                                ),
-                              ),
-                            )
-                          ],
-                        );
-                      },
-                    ),
+                          )
+                        ],
+                      );
+                    },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
@@ -200,7 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             shrinkWrap: true,
             children: [
               Text("are you sure want to delete ?"),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 "Warning: all card insid this deks will delete",
                 style: TextStyle(
