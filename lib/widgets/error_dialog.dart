@@ -7,6 +7,8 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      content: Text(message),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       title: Row(
         children: [
           Text("oops error !"),
@@ -16,10 +18,6 @@ class ErrorDialog extends StatelessWidget {
             icon: Icon(Icons.close),
           )
         ],
-      ),
-      content: Text(message),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
       ),
     );
   }

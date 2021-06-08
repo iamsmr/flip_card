@@ -26,17 +26,12 @@ class ColorPicker extends StatelessWidget {
   Widget _buildColor(Color color) {
     bool isSelected = selectedColor == color;
     return GestureDetector(
-      onTap: () {
-        onTap(color);
-      },
+      onTap: () => onTap(color),
       child: AnimatedContainer(
         duration: Duration(microseconds: 2),
         height: isSelected ? 45 : 40,
         width: isSelected ? 45 : 40,
-        decoration: BoxDecoration(
-          color: color,
-          shape: BoxShape.circle,
-        ),
+        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         child: isSelected ? Icon(Icons.check, color: Colors.white) : null,
       ),
     );

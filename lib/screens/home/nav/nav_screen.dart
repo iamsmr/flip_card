@@ -37,10 +37,12 @@ class _NavScreenState extends State<NavScreen> {
           return Scaffold(
             body: Stack(
               children: _items
-                  .map(
-                    (item, _) => MapEntry(item,
-                        _buildOffstageWidget(item, item == state.selctedItem)),
-                  )
+                  .map((item, _) {
+                    return MapEntry(
+                      item,
+                      _buildOffstageWidget(item, item == state.selctedItem),
+                    );
+                  })
                   .values
                   .toList(),
             ),
