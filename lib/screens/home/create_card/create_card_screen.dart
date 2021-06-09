@@ -1,3 +1,4 @@
+import 'package:flash_card/blocs/blocs.dart';
 import 'package:flash_card/constant/constant.dart';
 import 'package:flash_card/models/models.dart';
 import 'package:flash_card/screens/home/create_card/cubit/create_card_cubit.dart';
@@ -129,9 +130,13 @@ class CreateCardScreen extends StatelessWidget {
                                   onChanged: (deck) => context
                                       .read<CreateCardCubit>()
                                       .decksSelectionChange(deck as Decks),
-                                  items: decks.map((deck) {
+                                  items: context
+                                      .read<ProfileBloc>()
+                                      .state
+                                      .decks
+                                      .map((deck) {
                                     return DropdownMenuItem(
-                                      child: Text(deck.title),
+                                      child: Text(deck!.title),
                                       value: deck,
                                     );
                                   }).toList(),
@@ -187,7 +192,7 @@ class CreateCardScreen extends StatelessWidget {
       child: Column(
         children: [
           buildFlipCardTextField(
-            hintText: "Write Someting It will \nDisplay In the fron Side..",
+            hintText: "Write Someting It will \nDisplay In the Front Side..",
             onChange: (val) =>
                 context.read<CreateCardCubit>().fronTextChanges(val),
           ),

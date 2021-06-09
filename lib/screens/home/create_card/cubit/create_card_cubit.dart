@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flash_card/models/models.dart';
@@ -21,14 +23,23 @@ class CreateCardCubit extends Cubit<CreateCardState> {
   }
 
   void onColorChnage(Color color) {
-    emit(
-        state.copyWith(status: CreateCardStatus.initial, selectedColor: color));
+    emit(state.copyWith(
+      status: CreateCardStatus.initial,
+      selectedColor: color,
+    ));
   }
 
   void submit() {
-    try {} catch (e) {
-      emit(state.copyWith(
-          failure: Failure(message: "We ware unable to create card")));
+    if (state.status == CreateCardStatus.submitting) return;
+
+    try {
+      emit(state.copyWith(status: CreateCardStatus.submitting));
+    } catch (e) {
+      emit(
+        state.copyWith(
+          failure: Failure(message: "We ware unable to create card"),
+        ),
+      );
     }
   }
 }

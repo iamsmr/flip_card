@@ -20,7 +20,7 @@ class DecksRepository extends BaseDecksRepositry {
     return _firebaseFirestore
         .collection(Paths.decks)
         .where("creator", isEqualTo: creatorRef)
-        .orderBy("date", descending: false)
+        .orderBy("date", descending: true)
         .snapshots()
         .map(
       (snap) {
@@ -29,5 +29,10 @@ class DecksRepository extends BaseDecksRepositry {
         }).toList();
       },
     );
+  }
+
+  @override
+  void deleteDeck({required String id}) async {
+    await _firebaseFirestore.collection(Paths.decks).doc(id).delete();
   }
 }

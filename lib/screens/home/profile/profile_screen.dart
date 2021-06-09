@@ -61,103 +61,75 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                ProfileAvatar(
-                  radius: 50,
-                  profileImageUrl: state.user.photoURL,
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  state.user.displayName,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  state.user.email,
-                  style: TextStyle(color: Colors.grey[800]),
-                ),
-                const SizedBox(height: 30),
-                MaterialButton(
-                  minWidth: 200,
-                  height: 50,
-                  color: Theme.of(context).primaryColor,
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  ProfileAvatar(
+                    radius: 50,
+                    profileImageUrl: state.user.photoURL,
                   ),
-                  child: Text("Edit Profile"),
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    EditProfile.routeName,
-                    arguments: EditProfileScreenArgs(context: context),
+                  const SizedBox(height: 24),
+                  Text(
+                    state.user.displayName,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                ),
-                const SizedBox(height: 30),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    "My decks",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                  const SizedBox(height: 5),
+                  Text(
+                    state.user.email,
+                    style: TextStyle(color: Colors.grey[800]),
+                  ),
+                  const SizedBox(height: 30),
+                  MaterialButton(
+                    minWidth: 200,
+                    height: 50,
+                    color: Theme.of(context).primaryColor,
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    child: Text("Edit Profile"),
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      EditProfile.routeName,
+                      arguments: EditProfileScreenArgs(context: context),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  height: 60,
-                  alignment: Alignment.topLeft,
-                  child: ListView.builder(
-                    itemCount: state.decks.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Stack(
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              width: 80,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: state.decks[index]!.color,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Text(
-                                state.decks[index]!.title,
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey[700],
-                                ),
-                              ),
-                              margin: EdgeInsets.only(right: 20),
-                            ),
-                          ),
-                          Positioned(
-                            right: 22,
-                            top: 5,
-                            child: GestureDetector(
-                              onTap: () => deleteConformationDialgo(context),
-                              child: Container(
-                                padding: EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(Icons.close, size: 13),
-                              ),
-                            ),
-                          )
-                        ],
+                  const SizedBox(height: 30),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      "Recent decks",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                    ),
+                    itemCount: state.decks.length > 3 ? 3 : state.decks.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 70,
+                        width: 50,
+                        alignment: Alignment.center,
+                        child: Text(state.decks[index]!.title),
+                        decoration: BoxDecoration(
+                          color: state.decks[index]!.color,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       );
                     },
-                  ),
-                ),
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         );
@@ -203,7 +175,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: Colors.red,
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
               onPressed: () {},
               child: Text("Delete"),
             )

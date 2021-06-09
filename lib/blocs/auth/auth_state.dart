@@ -8,12 +8,10 @@ class AuthState extends Equatable {
 
   const AuthState({
     this.user,
-    required this.status,
+    this.status = AuthStatus.unknown,
   });
 
-  factory AuthState.initial() {
-    return const AuthState(status: AuthStatus.unknown, user: null);
-  }
+  factory AuthState.initial() => const AuthState();
 
   factory AuthState.unauthenticated() {
     return AuthState(status: AuthStatus.unauthenticated);
@@ -22,6 +20,9 @@ class AuthState extends Equatable {
   factory AuthState.authenticated({required auth.User user}) {
     return AuthState(status: AuthStatus.authenticated, user: user);
   }
+
+  @override
+  bool? get stringify => true;
 
   @override
   List<Object?> get props => [user, status];

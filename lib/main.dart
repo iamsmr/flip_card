@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_card/blocs/auth/auth_bloc.dart';
-import 'package:flash_card/config/bloc_observer.dart';
+import 'package:flash_card/blocs/blocs.dart';
+import 'package:flash_card/blocs/bloc_observer.dart';
 import 'package:flash_card/config/custom_route.dart';
 import 'package:flash_card/repositories/repositories.dart';
 import 'package:flutter/foundation.dart';
@@ -41,6 +42,14 @@ class MyApp extends StatelessWidget {
               authRepository: context.read<AuthRepository>(),
             ),
           ),
+          BlocProvider<ProfileBloc>(
+            create: (context) => ProfileBloc(
+                decksRepository: context.read<DecksRepository>(),
+                authBloc: context.read<AuthBloc>(),
+                profileRepository: context.read<ProfileRepository>())
+              ..add(ProfileLoadUser(
+                  userId: context.read<AuthBloc>().state.user!.uid)),
+          )
         ],
         child: MaterialApp(
           title: 'Flip Card',
