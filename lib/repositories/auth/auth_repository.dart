@@ -82,21 +82,32 @@ class AuthRepository extends BaseAuthRepository {
       final authResult = await _firebaseAuth.signInWithCredential(credential);
       final user = authResult.user;
 
-      final userDoc =
+      final DocumentReference? userRef =
+          _firebaseFirestore.collection(Paths.users).doc(user?.uid);
+
+      // if (userRef != null) {
+      //   final userDoc = await userRef.get();
+      //   if (userDoc.exists) {
+      //     await _firebaseFirestore
+      //         .collection(Paths.users)
+      //         .doc(user?.uid)
+      //         .update({
+      //       "email": user?.email,
+      //     });
+      //   }
+      // } else {
+
+      // }
+      final doc =
           await _firebaseFirestore.collection(Paths.users).doc(user?.uid).get();
 
-      if (userDoc.exists) {
-        await _firebaseFirestore.collection(Paths.users).doc(user?.uid).update({
-          "email": user?.email,
-        });
-      } else {
-        await _firebaseFirestore.collection(Paths.users).doc(user?.uid).update({
+      if (doc.exists == false) {
+        await _firebaseFirestore.collection(Paths.users).doc(user?.uid).set({
           "displayName": user?.displayName,
           "email": user?.email,
           "photoURL": user?.photoURL,
         });
       }
-
       return user;
     } on auth.FirebaseAuthException catch (e) {
       throw Failure(code: e.code, message: e.message ?? "");

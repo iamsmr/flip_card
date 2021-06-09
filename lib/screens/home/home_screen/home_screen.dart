@@ -2,6 +2,7 @@ import 'package:flash_card/blocs/blocs.dart';
 import 'package:flash_card/constant/constant.dart';
 import 'package:flash_card/models/decks.dart';
 import 'package:flash_card/screens/home/nav/widget/profier_avatar.dart';
+import 'package:flash_card/screens/screens.dart';
 import 'package:flash_card/widgets/error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -112,16 +113,23 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                       itemCount: state.decks.length,
                                       itemBuilder: (context, index) {
-                                        return Container(
-                                          height: 70,
-                                          width: 50,
-                                          alignment: Alignment.center,
-                                          child:
-                                              Text(state.decks[index]!.title),
-                                          decoration: BoxDecoration(
-                                            color: state.decks[index]!.color,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
+                                        return GestureDetector(
+                                          onTap: () => Navigator.pushNamed(
+                                              context, DecksScreen.routeName),
+                                          child: Container(
+                                            height: 70,
+                                            width: 50,
+                                            padding: EdgeInsets.all(10),
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              state.decks[index]!.title,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: state.decks[index]!.color,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
                                           ),
                                         );
                                       },

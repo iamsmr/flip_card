@@ -27,6 +27,8 @@ class CoustomRoute {
         return EditProfile.route(
           args: routeSettings.arguments as EditProfileScreenArgs,
         );
+      case DecksScreen.routeName:
+        return DecksScreen.route();
       default:
         return _error();
     }

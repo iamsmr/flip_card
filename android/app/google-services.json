@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "820979685881-j5avt5glr2iu2vc3posio97slkl7c7lv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flip_card",
+            "certificate_hash": "a115949d4c544abd99622ade557ec5a24d2b2716"
+          }
+        },
+        {
           "client_id": "820979685881-l8hjsvnbu6k40vfic7m7dviqeajvr7l3.apps.googleusercontent.com",
           "client_type": 3
         }
