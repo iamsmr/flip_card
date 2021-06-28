@@ -5,6 +5,7 @@ import 'package:flash_card/blocs/blocs.dart';
 import 'package:flash_card/blocs/bloc_observer.dart';
 import 'package:flash_card/config/custom_route.dart';
 import 'package:flash_card/repositories/repositories.dart';
+import 'package:flash_card/dependency_injector.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,36 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<AuthRepository>(
-          create: (context) => AuthRepository(),
-        ),
-        RepositoryProvider<ProfileRepository>(
-          create: (context) => ProfileRepository(),
-        ),
-        RepositoryProvider<StorageRepository>(
-          create: (context) => StorageRepository(),
-        ),
-        RepositoryProvider<DecksRepository>(
-          create: (context) => DecksRepository(),
-        )
-      ],
+      providers: repositorys,
       child: MultiBlocProvider(
-        providers: [
-          BlocProvider<AuthBloc>(
-            create: (context) => AuthBloc(
-              authRepository: context.read<AuthRepository>(),
-            ),
-          ),
-          BlocProvider<ProfileBloc>(
-            create: (context) => ProfileBloc(
-                decksRepository: context.read<DecksRepository>(),
-                authBloc: context.read<AuthBloc>(),
-                profileRepository: context.read<ProfileRepository>())
-              ..add(ProfileLoadUser(
-                  userId: context.read<AuthBloc>().state.user!.uid)),
-          )
-        ],
+        providers: blocks,
         child: MaterialApp(
           title: 'Flip Card',
           debugShowCheckedModeBanner: false,
